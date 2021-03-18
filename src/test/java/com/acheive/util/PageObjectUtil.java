@@ -12,8 +12,9 @@ import org.openqa.selenium.WebElement;
 
 public class PageObjectUtil {
 
-	public static String getProperty(String propertyName) throws  IOException	{
-		String propFilePath=System.getProperty("user.dir")+File.separator+"src"+File.separator+"test"+File.separator+"resources"+File.separator+ "page.properties";
+	public static String getProperty(String propertyName,String pageRef) throws  IOException	{
+		String basePath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator;
+		String propFilePath = basePath + pageRef+".properties";
 		Properties properties=new Properties();
 		properties.load(new FileInputStream(propFilePath));
 		return properties.getProperty(propertyName);

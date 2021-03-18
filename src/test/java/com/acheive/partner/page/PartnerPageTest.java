@@ -18,6 +18,10 @@ import com.acheive.util.WebDriverManager;
 public class PartnerPageTest extends Acheive3000BasePage
 {
 	WebDriver driver = null;
+	String acceptAllCookies="//button[text()='Accept All Cookies']";
+	String linkPartners ="//a[text()='Partners']";
+	String logos ="//h3/../parent::div[@class='col-12 col-md-9 news-list-post article']/..";
+	String menuExpander ="//button[@class='navbar-toggler collapsed']";
 
 	public PartnerPageTest() throws IOException {
 	}
@@ -50,7 +54,7 @@ public class PartnerPageTest extends Acheive3000BasePage
 
 		/**
 		 * Step 3 - List all partners LOGO
-		 * - Find all elemnts using xpath locator for logos.
+		 * - Find all elements using xpath locator for logos.
 		 */
 		List<WebElement> listOfElementsOurPartners = driver.findElements(By.xpath(logos));
 		/** Step 3 Complete **/
