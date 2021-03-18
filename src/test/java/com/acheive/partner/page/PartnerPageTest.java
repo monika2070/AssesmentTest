@@ -1,10 +1,8 @@
 package com.acheive.partner.page;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tools.ant.util.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,8 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
 import com.acheive.base.page.Acheive3000BasePage;
 import com.acheive.util.PageObjectUtil;
 import com.acheive.util.WebDriverManager;
@@ -22,13 +18,10 @@ import com.acheive.util.WebDriverManager;
 public class PartnerPageTest extends Acheive3000BasePage
 {
 	WebDriver driver = null;
-	SoftAssert asserts= new SoftAssert();
-	PageObjectUtil utils=new PageObjectUtil();
-	
-	PartnerPageTest() throws  IOException
-	{
-		super();		
+
+	public PartnerPageTest() throws IOException {
 	}
+
 
 	@Test
 	public void testPartnersLogoNameAndDescription() throws IOException {
@@ -41,18 +34,18 @@ public class PartnerPageTest extends Acheive3000BasePage
 		WebDriverWait wait=new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(acceptAllCookies)));
 
-		utils.jsClick(utils.getWebElement(acceptAllCookies, "xpath"));
+		PageObjectUtil.javascriptClickExecutor(PageObjectUtil.getWebElementByXpath(acceptAllCookies));
 		/**
 		 * Test Step 2 - Open Partners List .
 		 *  1- Click on toggler collapsed Menu.
 		 *  2 - Wait Until partner link is initialized and clickable.
 		 *  3- Click on Partners Link
 		 */
-		utils.jsClick(utils.getWebElement(menuExpander, "xpath"));
+		PageObjectUtil.javascriptClickExecutor(PageObjectUtil.getWebElementByXpath(menuExpander));
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(linkPartners)));
 
-		utils.getWebElement(linkPartners, "xpath").click();
+		PageObjectUtil.getWebElementByXpath(linkPartners).click();
 		/** Step 2 Complete	**/
 
 		/**
@@ -63,7 +56,7 @@ public class PartnerPageTest extends Acheive3000BasePage
 		/** Step 3 Complete **/
 		int i = 1;
 		for (WebElement element : listOfElementsOurPartners) {
-			utils.scrollIntoTheElement(element);
+			PageObjectUtil.scrollIntoTheElement(element);
 			/**
 			 * Step 4 - Final Step check all presented partners has logo, header and text description
 			 */
@@ -89,7 +82,6 @@ public class PartnerPageTest extends Acheive3000BasePage
 
 	@AfterSuite
 	public void cleanUp()	{
-		asserts.assertAll();
 		driver.quit();
 	}
 	
